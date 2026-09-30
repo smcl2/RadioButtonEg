@@ -1,5 +1,6 @@
 package com.example.radiobuttoneg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,16 +28,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pickTurtle(View view) {
-        ImageView imgView = (ImageView) findViewById(R.id.imageView);
-        if (view.getId()==R.id.donatello)
-            imgView.setImageResource(R.drawable.tmntdon);
-        else if(view.getId()==R.id.leonardo)
-            imgView.setImageResource(R.drawable.tmntleo);
-        else if(view.getId()==R.id.michaelangelo)
-            imgView.setImageResource(R.drawable.tmntmike);
-        else
-            imgView.setImageResource(R.drawable.tmntraph);
+        Intent intent = new Intent(this, ImageActivity.class);
 
-        Toast.makeText(this,"You clicked the " + ((RadioButton)view).getText() + " button!", Toast.LENGTH_SHORT).show();
+        if (view.getId()==R.id.donatello)
+            intent.putExtra("TurtleID",R.id.donatello);
+        else if(view.getId()==R.id.leonardo)
+            intent.putExtra("TurtleID",R.id.leonardo);
+        else if(view.getId()==R.id.michaelangelo)
+            intent.putExtra("TurtleID",R.id.michaelangelo);
+        else
+            intent.putExtra("TurtleID",R.id.raphael);
+
+        startActivity(intent);
+
+        //Toast.makeText(this,"You clicked the " + ((RadioButton)view).getText() + " button!", Toast.LENGTH_SHORT).show();
     }
 }
